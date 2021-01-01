@@ -1,0 +1,6 @@
+Il db in sqlite sarà pensato a scopo dimostrativo e non per eseguire una vera app funzionante, avrei usato mysql altrimenti(nulla da togliere a sqlite).
+
+DB:
+    -   Categorie
+    -   Users
+    -   Ticket

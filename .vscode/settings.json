@@ -1,0 +1,6 @@
+{
+    "html.format.templating": false,
+    "emmet.includeLanguages": {
+        "blade":"html"
+    },
+}
