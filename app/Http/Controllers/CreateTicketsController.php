@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Ticket;
+use App\Models\Services\GenericServices;
 use Illuminate\Support\Facades\Redirect;
 
 class CreateTicketsController extends Controller
@@ -37,6 +38,10 @@ class CreateTicketsController extends Controller
         $ticket->updated_at = date("Y-m-d H:i:s");
 
         $ticket->save();
+
+        //Mail Send
+        $genericServices = new GenericServices();
+        $genericServices->createdTicketMail($ticket);
 
         return Redirect::home()->with("success", "Il Ticket è stato inserito con successo!");
     }

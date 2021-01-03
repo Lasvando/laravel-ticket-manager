@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Ticket;
 use App\Models\Category;
+use App\Models\Services\GenericServices;
 use Illuminate\Support\Facades\Redirect;
 
 class TicketsController extends Controller
@@ -27,12 +28,15 @@ class TicketsController extends Controller
 
     public function delete($id)
     {
+        $genericServices = new GenericServices();
         $ticket = Ticket::find($id);
         $error = null;
         if ($ticket != null) 
         {
             if ($ticket->user_id == auth()->user()->id) 
             {
+                
+                $genericServices->deletedTicketMail($ticket);
                 Ticket::where('id', $ticket->id)->delete();
                 return Redirect::home()->with("success", "Il Ticket è stato rimosso con successo!");
             }
